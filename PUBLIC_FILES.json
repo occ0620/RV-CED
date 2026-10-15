@@ -39,6 +39,10 @@
     "bytes": 2128,
     "sha256": "39ae6d327af4e645901976424241d56e825b1ca9b746aa44b6ce382a76aa4bec"
   },
+  "rvced_pilot/followup_analysis/build_labeled_review.py": {
+    "bytes": 5011,
+    "sha256": "83ab2526ea7bd0a87435059b4ec9fb570e1962b497ed7185d44235e1979de40d"
+  },
   "rvced_pilot/followup_analysis/build_offline_review.py": {
     "bytes": 7596,
     "sha256": "f296d500553b41a9c5c2159affdc5d096a64c284e16a68d2fd98b6a326521dcb"
@@ -46,6 +50,14 @@
   "rvced_pilot/followup_analysis/common.py": {
     "bytes": 2775,
     "sha256": "6fac7a4cc35b6fb01cc2d6f2a3f83995a2085c5131a2a9662ea5103304b91209"
+  },
+  "rvced_pilot/followup_analysis/evidence/review_display_v2.json": {
+    "bytes": 4152,
+    "sha256": "a998b40df3c83ac23f0efcb5e4e7fe205172b3974dd74d52135540b9662358c1"
+  },
+  "rvced_pilot/followup_analysis/evidence/review_display_v2_verification.json": {
+    "bytes": 507,
+    "sha256": "0e7097a9adaa6bae16de40ac34d155f2ee4b056e2a8ac197ed73885ee731e4d8"
   },
   "rvced_pilot/followup_analysis/figures/donor_stability.png": {
     "bytes": 223218,
@@ -72,12 +84,20 @@
     "sha256": "317102f81bcd530bb66c646c538de3b3edf3365bcffbef5a4fe6046cab8b6225"
   },
   "rvced_pilot/followup_analysis/README.md": {
-    "bytes": 484,
-    "sha256": "2944688afeb5ee3acd99bb36d04cc7d653f2680025a7cbad75627ef39319572e"
+    "bytes": 1016,
+    "sha256": "f43d421c94bd007f4c8246feaf38e03338de2a5631446d2d98c6ec2b432f25eb"
+  },
+  "rvced_pilot/followup_analysis/review_ui_labels.py": {
+    "bytes": 8225,
+    "sha256": "e971c72160497b6225eab87ed8b610b2fbdc3cddc3cf4d976980a8e5fae80440"
   },
   "rvced_pilot/followup_analysis/reviewer/guide.md": {
     "bytes": 3938,
     "sha256": "580541cec965bfbe23f191ddbab31bf87c9d350f0589d945cb15c2bf01d3ae8e"
+  },
+  "rvced_pilot/followup_analysis/reviewer/guide_labeled_v2.md": {
+    "bytes": 5232,
+    "sha256": "adf986608f087e6de1b0ebd9f6ff2bacf8cd9597eff44e652352ccc465362ca3"
   },
   "rvced_pilot/followup_analysis/run_analysis.py": {
     "bytes": 22112,
@@ -86,6 +106,10 @@
   "rvced_pilot/followup_analysis/serve_review.py": {
     "bytes": 6982,
     "sha256": "e11580032a7b4ce4607d7a9cc7fc9f091dbbe853b1ccda697e89d4f665b91d1c"
+  },
+  "rvced_pilot/followup_analysis/serve_review_labeled.py": {
+    "bytes": 1230,
+    "sha256": "aaba04209d4089add4d8597551592c7414c1f60d228c01b6f90b54ec107d1355"
   },
   "rvced_pilot/followup_analysis/tables/audit_composition.json": {
     "bytes": 1035,
@@ -130,6 +154,10 @@
   "rvced_pilot/followup_analysis/verify_delivery.py": {
     "bytes": 9406,
     "sha256": "414774fbdb8f2dbab9425cef6d025dda0e3c98415f83c65c4c4133cbe2b05ba9"
+  },
+  "rvced_pilot/followup_analysis/verify_labeled_review.py": {
+    "bytes": 7590,
+    "sha256": "2e4415ff77e7a5197a7b02ea8e0e0640e96a9ac41ab77ce8060e08583c04e3b9"
   },
   "rvced_pilot/followup_analysis/verify_offline_review.py": {
     "bytes": 3203,

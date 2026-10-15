@@ -1,0 +1,95 @@
+{
+  "version": "display-v2",
+  "time_utc": "2026-10-15T13:37:22.643752+00:00",
+  "classification": "display labels and explanatory anchors; no recoding",
+  "missing_or_ambiguous_before_revision": [
+    "Dropdowns omitted existing Chinese grade names",
+    "Intensity1/2 adjacent ordering was not explicit; retained names, clarified ordinal0..4",
+    "Low/medium/high confidence lacked brief behavioral descriptions",
+    "Blank, unknown and na were not explained beside the choices"
+  ],
+  "resolution": "Chinese option labels plus unified explanatory guide; no new thresholds, categories or quality gates",
+  "option_labels": {
+    "polarity": {
+      "-1": "负向情感",
+      "0": "中性情感",
+      "1": "正向情感"
+    },
+    "intensity": {
+      "0": "无情感强度",
+      "1": "弱（最低非零档）",
+      "2": "较弱（高于1档、低于3档）",
+      "3": "较强",
+      "4": "强"
+    },
+    "confidence": {
+      "1": "低信心",
+      "2": "中等信心",
+      "3": "高信心"
+    },
+    "clarity": {
+      "1": "难以辨认",
+      "2": "受限但部分可辨",
+      "3": "清楚"
+    },
+    "speech_words_understood": {
+      "0": "不能理解词义",
+      "1": "能理解词义"
+    },
+    "subtitles_present": {
+      "0": "未见字幕",
+      "1": "存在字幕"
+    },
+    "subtitles_readable": {
+      "0": "字幕不可读",
+      "1": "字幕可读"
+    },
+    "speech_content_conflict": {
+      "0": "无明显语词冲突",
+      "1": "有明显语词冲突"
+    },
+    "subtitle_leakage": {
+      "0": "无明显字幕信息泄露",
+      "1": "有明显字幕信息泄露"
+    },
+    "identity_discontinuity": {
+      "0": "无明显身份变化／不一致",
+      "1": "有明显身份变化／不一致"
+    },
+    "scene_discontinuity": {
+      "0": "无明显场景变化／不一致",
+      "1": "有明显场景变化／不一致"
+    },
+    "timing_discontinuity": {
+      "0": "无明显同步问题",
+      "1": "有明显同步问题"
+    },
+    "processing_error": {
+      "0": "无明显处理错误",
+      "1": "有明显处理错误"
+    }
+  },
+  "field_help": {
+    "polarity": "仅判断所展示内容；无法判断请留空并备注，不要把未知当中性。",
+    "intensity": "沿用原名称，按0至4递增。1为最低非零档，2为其上相邻档；没有新增数值阈值。",
+    "confidence": "人的判断信心：1不确定较多；2基本可判断但仍有疑问；3有明确把握。",
+    "clarity": "内容能否辨认，与情感强弱、判断信心是不同字段。",
+    "speech_words_understood": "完整语音未模糊语词；非音频项不适用。",
+    "subtitles_present": "仅判断展示的8帧中是否可见字幕；看不清用unknown。",
+    "subtitles_readable": "确认无字幕时填na；有字幕但看不清填0或unknown，不要自动当可读。",
+    "speech_content_conflict": "语词与独立文本明显语义不一致；仅语气不同不自动算语词冲突。",
+    "subtitle_leakage": "可读字幕或画面文字是否提供词义或情感线索。",
+    "identity_discontinuity": "没有原始参照、无法从展示本身判断时用unknown，不猜成0。",
+    "scene_discontinuity": "没有原始参照、无法从展示本身判断时用unknown，不猜成0。",
+    "timing_discontinuity": "8帧不足以充分检查唇音同步；证据不足用unknown。",
+    "processing_error": "明显损坏、缺通道、异常重复或解码错误；情感不同本身不是处理错误。"
+  },
+  "stored_codes_unchanged": true,
+  "existing_scores_automatically_changed": false,
+  "same_item_ids": true,
+  "legacy_browser_storage_keys_preserved": true,
+  "csv_import_conflicts": "Reject entire import; preserve current answers",
+  "original_protocol_sha256": "f777c26fd9d80d0d91cea8038a677e4f6bd01c6ab5e002870e1f4fde8745c637",
+  "original_render_code_sha256": "e11580032a7b4ce4607d7a9cc7fc9f091dbbe853b1ccda697e89d4f665b91d1c",
+  "overlay_code_sha256": "e971c72160497b6225eab87ed8b610b2fbdc3cddc3cf4d976980a8e5fae80440"
+}

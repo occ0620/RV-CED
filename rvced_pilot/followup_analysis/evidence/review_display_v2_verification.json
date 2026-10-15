@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "dropdown_codes_unchanged": true,
+  "existing_browser_scores_unchanged": true,
+  "csv_roundtrip_preserves_codes_and_notes": true,
+  "conflicting_import_rejected": true,
+  "old_csv_restoration_passed": true,
+  "items_unchanged": 360,
+  "media_files_unchanged": 657,
+  "private_http_routes_404": true,
+  "frozen_protocol_and_original_files_unchanged": true,
+  "fixture_notice": "Synthetic compatibility scores only existed in Node memory; no human rating files generated"
+}
