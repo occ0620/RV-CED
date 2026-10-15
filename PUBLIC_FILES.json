@@ -16,16 +16,16 @@
     "sha256": "b706df27f01087dc696617b31189e83c0ba20f08cc8230f7d6f818a85c88b133"
   },
   "docs/REVIEW.md": {
-    "bytes": 3189,
-    "sha256": "8e8491b90b2f487fe2547dbf14817331f523f19676063031691194a077bd6724"
+    "bytes": 3778,
+    "sha256": "9961224f3bf5bf3cd04817a36f59a79a28e715eb9af3080efd2ab13d46b8a32f"
   },
   "docs/RUNNING.md": {
     "bytes": 2938,
     "sha256": "8622ff359d124db3fe9f924b12046cce4e9ca53d0ce3c36ff6f4ea7230c029df"
   },
   "README.md": {
-    "bytes": 3054,
-    "sha256": "b2fca4c50ad96ba8ca5ee66737b67ce1250d09bfa52f97e62d4a1fff5d5bc651"
+    "bytes": 4205,
+    "sha256": "318b94a1b15d6c1675f6148177434d43a0257758fe90e85dbd63c84913a497ac"
   },
   "rvced_pilot/configs/pilot.yaml": {
     "bytes": 3164,

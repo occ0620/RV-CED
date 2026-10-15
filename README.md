@@ -4,6 +4,18 @@
 
 **状态：真实 GPU pilot 已完成；标签规则构造，关系审核待完成。** 本阶段没有训练或 LoRA。
 
+## 队友填写：直接下载完整盲审包
+
+**[下载审核者2完整离线包（约1.43GB）](https://github.com/occ0620/RV-CED/releases/download/untagged-d54ea16e997a267d393b/reviewer_02_offline_v1.zip)** · [SHA256校验文件](https://github.com/occ0620/RV-CED/releases/download/untagged-d54ea16e997a267d393b/reviewer_02_offline_v1.zip.sha256) · [Releases下载页](https://github.com/occ0620/RV-CED/releases/tag/pilot-blind-review-v1)
+
+1. 下载并完整解压ZIP，用Chrome或Edge打开“打开盲审.html”。无需Python。
+2. 按字段说明先完成独立通道，再做组合输入；编号固定为reviewer_02。
+3. 每完成一部分导出CSV备份，最后将reviewer_02.completed.csv私下交给组织者。
+
+该包含同一360个盲审项目所需的全部657个媒体文件，不含标签、模型预测、私有映射或已填写评分。
+克隆代码或点击GitHub的Download ZIP不会包含这个媒体包，需使用上面的独立下载入口。
+审核者请直接使用盲审包，独立评分，不参考下方分析结果或另一位审核者评分。
+
 ## 实际运行
 
 - 数据：CH-SIMS v2.0 有标签CSV，实际4,403条；4,268条通过全量媒体检查，test可用1,005条。
@@ -43,7 +55,7 @@ python -m pytest rvced_pilot/tests -q -p no:tmpdir -p no:cacheprovider
 python rvced_pilot/pilot.py --help
 ```
 
-这是代码、方法和汇总统计发布。数据、原始媒体、模型权重、逐项标签/预测、私有审核映射、访问凭据和离线媒体包保留在本地。
+Git代码区发布代码、方法和汇总统计；本项目审核所需的完整盲化媒体包另在Releases提供。全量原始数据、模型权重、逐项标签/预测、私有审核映射和访问凭据保留在本地。
 因此克隆仓库可运行单元测试，但无法仅凭仓库恢复原始逐项实验；运行需要自行准备数据/权重，复核原实验需要私有冻结产物。
-不要用示例配置冒充已经执行的冻结配置。数据与模型的使用条件以各自官方来源为准；本仓库没有附带原始数据或权重。
-审核者只接收专用盲审页面或私下传递的离线包，不应查看分析报告。
+不要用示例配置冒充已经执行的冻结配置。数据与模型的使用条件以各自官方来源为准；代码区没有附带全量原始数据或权重。
+审核者使用专用盲审页面或上方完整离线包，不应查看分析报告。
