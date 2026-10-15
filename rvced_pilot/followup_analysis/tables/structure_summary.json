@@ -1,0 +1,34 @@
+{
+  "sources": 30,
+  "structure_counts": {
+    "all_four_agree": 27,
+    "modality_conflict": 3
+  },
+  "matching_multi_counts": {
+    "3": 27,
+    "2": 3
+  },
+  "unique_aligned_counts": {
+    "T": 0,
+    "A": 0,
+    "V": 0
+  },
+  "confidence_counts": {
+    "<0.9": 26,
+    ">=0.9": 4
+  },
+  "original_prediction_counts": {
+    "-1": 13,
+    "1": 15,
+    "0": 2
+  },
+  "metadata_known": {
+    "speaker_id": 0,
+    "source_video_id": 30,
+    "scene_id": 0,
+    "subtitle_status": 0,
+    "language": 0,
+    "recording_environment": 0,
+    "speech_content_conflict": 0
+  }
+}

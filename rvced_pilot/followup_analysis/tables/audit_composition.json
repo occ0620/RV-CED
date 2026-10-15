@@ -1,0 +1,35 @@
+{
+  "item_count": 360,
+  "source_modality_units": 36,
+  "unique_audited_sources": 26,
+  "audited_triplets": 72,
+  "stages": {
+    "channel": {
+      "display_rows": 180,
+      "unique_display_contents": 177,
+      "excess_duplicate_displays": 3,
+      "duplicate_content_groups": 3
+    },
+    "combination": {
+      "display_rows": 180,
+      "unique_display_contents": 170,
+      "excess_duplicate_displays": 10,
+      "duplicate_content_groups": 9
+    }
+  },
+  "condition_stage_counts": {
+    "channel": {
+      "original": 36,
+      "a": 72,
+      "b": 72
+    },
+    "combination": {
+      "original": 36,
+      "a": 72,
+      "b": 72
+    }
+  },
+  "unique_underlying_full_input_hashes": 170,
+  "independence_note": "Display rows and repeated source ratings are not independent evidence. 72 audited triplets are only 36 source-modality units; source originals shared across donor groups.",
+  "frozen_audit_key_canonical_sha256": "9ff22f42c5f7317f8028531c5f3592f798ee80607cd241cfcc7d7c35cfee78f1"
+}

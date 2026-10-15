@@ -1,0 +1,127 @@
+protocol_version: rvced-1
+inventory_workers: 6
+media_workers: 4
+revision_reason: Portable example configuration. Original executed manifests remain
+  private; new paths require a new run and freeze.
+seed: 20261015
+bootstrap_seed: 20261016
+bootstrap_repetitions: 2000
+zero_tolerance: 1.0e-06
+zero_tolerance_sensitivity:
+- 0.0
+- 1.0e-06
+- 0.0001
+- 0.001
+dataset:
+  name: CH-SIMS-v2.0-supervised
+  labels_path: data/CH-SIMS-v2/meta.csv
+  media_root: data/CH-SIMS-v2/Raw
+  schema_evidence: Observed CSV headers and 4403 one-to-one Raw/{video_id}/{clip_id}.mp4
+    files; identical packaged meta.csv; official dataset homepage documents CSV IDs/splits/labels.
+    CSV labels only, not feature-pickle labels (known discrepancy).
+  terms_source: https://github.com/thuiar/ch-sims-v2
+  terms_status: unconfirmed
+  label_scale: Published regression labels [-1,1]; identity transform; local meta.csv
+    chosen before any Qwen outputs
+  label_multiplier: 1.0
+  label_offset: 0.0
+  columns:
+    clip_id: null
+    split: mode
+    text: text
+    media_path: null
+    y_t: label_T
+    y_a: label_A
+    y_v: label_V
+    y_multi: label
+    speaker_id: null
+    source_video_id: video_id
+    scene_id: null
+    language: null
+    recording_environment: null
+    subtitle_status: null
+  clip_id_template: '{video_id}/{clip_id}'
+  media_path_template: '{video_id}/{clip_id}.mp4'
+  split_values:
+    test: test
+    train: train
+    valid: valid
+selection:
+  split: test
+  tau: 0.2
+  min_source_strength: 0.4
+  label_tolerance: 0.2
+  duration_ratio:
+  - 0.8
+  - 1.25
+  ab_duration_ratio: 1.15
+  text_length_ratio:
+  - 0.5
+  - 2.0
+  ab_text_length_ratio: 1.5
+  donor_max_reuse: 2
+  sources_per_modality: 30
+  groups_per_source: 2
+  smoke_sources_per_modality: 2
+  smoke_groups_per_source: 1
+preprocessing:
+  audio_sr: 16000
+  audio_format: float32-mono-no-normalization
+  frames: 8
+  frame_rule: rounded-linspace-first-to-last-decoded-frame
+  video_min_pixels: 100352
+  video_max_pixels: 602112
+  use_audio_in_video: false
+  decode_timeout_seconds: 180
+  max_stream_start_gap_seconds: 0.25
+model:
+  id: Qwen/Qwen2.5-Omni-7B
+  local_path: models/Qwen2.5-Omni-7B
+  revision: ae9e1690543ffd5c0221dc27f79834d0294cba00
+  dtype: bfloat16
+  attention_implementation: sdpa
+  local_files_only: true
+  budget_unique_inputs: 1100
+scoring:
+  method: next_token
+  codes:
+  - A
+  - B
+  - C
+  classes:
+  - -1
+  - 0
+  - 1
+  sequence_length_normalization: none
+diagnostics:
+  single_modality: true
+  repeated_inputs: 2
+  swapped_mapping_inputs: 2
+  swapped_codes:
+  - C
+  - B
+  - A
+  repeat_absolute_tolerance: 0.0001
+audit:
+  units_per_modality: 12
+  reviewers_required: 2
+  max_intensity_difference: 1
+  min_confidence: 2
+  intensity_scale:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  confidence_scale:
+  - 1
+  - 2
+  - 3
+  required_issue_fields:
+  - speech_content_conflict
+  - subtitle_leakage
+  - identity_discontinuity
+  - scene_discontinuity
+  - timing_discontinuity
+  - processing_error
+  high_quality_rule: unanimous-relation-pass-no-processing-error-symmetric-identity-and-scene

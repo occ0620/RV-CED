@@ -1,0 +1,25 @@
+﻿modality,metric,triplet_numerator,triplet_denominator,source_denominator,source_mean_value,definition,source_positive_count,source_numerator
+T,IR_A,47,60,30,0.7833333333333333,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+T,B_positive,53,60,30,0.8833333333333333,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+T,B_zero,0,60,30,0.0,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+T,B_negative,7,60,30,0.11666666666666667,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+T,B_positive_of_source_mean_EXPLORATORY,,,30,0.8666666666666667,"Posthoc different estimand: sign after averaging donor score shifts, NOT replacement for original B_positive",26,
+T,delta_A_donor_sign_agreement,,,30,0.8333333333333334,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,25
+T,delta_B_donor_sign_agreement,,,30,0.9666666666666667,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,29
+T,D_donor_sign_agreement,,,30,0.5666666666666667,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,17
+A,IR_A,57,60,30,0.95,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+A,B_positive,54,60,30,0.9,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+A,B_zero,0,60,30,0.0,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+A,B_negative,6,60,30,0.1,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+A,B_positive_of_source_mean_EXPLORATORY,,,30,0.9,"Posthoc different estimand: sign after averaging donor score shifts, NOT replacement for original B_positive",27,
+A,delta_A_donor_sign_agreement,,,30,0.8333333333333334,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,25
+A,delta_B_donor_sign_agreement,,,30,0.8,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,24
+A,D_donor_sign_agreement,,,30,0.7,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,21
+V,IR_A,53,60,30,0.8833333333333333,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+V,B_positive,53,60,30,0.8833333333333333,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+V,B_zero,0,60,30,0.0,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+V,B_negative,7,60,30,0.11666666666666667,"Compute indicator per donor group, mean two indicators within source, then mean30 sources; not indicator of mean score shift",,
+V,B_positive_of_source_mean_EXPLORATORY,,,30,0.9,"Posthoc different estimand: sign after averaging donor score shifts, NOT replacement for original B_positive",27,
+V,delta_A_donor_sign_agreement,,,30,0.8333333333333334,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,25
+V,delta_B_donor_sign_agreement,,,30,0.9666666666666667,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,29
+V,D_donor_sign_agreement,,,30,0.8333333333333334,One comparison of group1/group2 signs per source; numerical sign tolerance1e-6,,25

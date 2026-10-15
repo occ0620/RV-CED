@@ -1,0 +1,13 @@
+﻿modality,tolerance,triplet_n,triplet_B_positive,triplet_B_zero,triplet_B_negative,D_positive_B_nonpositive_with_tolerance,source_mean_B_positive,source_mean_B_zero,source_mean_B_negative,source_n
+T,0.0,60,53,0,7,2,26,0,4,30
+A,0.0,60,54,0,6,1,27,0,3,30
+V,0.0,60,53,0,7,6,27,0,3,30
+T,1e-06,60,53,0,7,2,26,0,4,30
+A,1e-06,60,54,0,6,1,27,0,3,30
+V,1e-06,60,53,0,7,6,27,0,3,30
+T,0.0001,60,53,0,7,2,26,0,4,30
+A,0.0001,60,54,0,6,1,27,0,3,30
+V,0.0001,60,53,0,7,6,27,0,3,30
+T,0.001,60,53,0,7,2,26,0,4,30
+A,0.001,60,54,0,6,1,27,0,3,30
+V,0.001,60,53,0,7,6,27,0,3,30

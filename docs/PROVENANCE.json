@@ -1,0 +1,40 @@
+{
+  "status": "real_pilot_completed_relation_audit_pending",
+  "weight_revision": "ae9e1690543ffd5c0221dc27f79834d0294cba00",
+  "executed_source_code_sha256": "39b92bfddc0b8a20ab4f0abd2487b2b95cdd79a55ac6ab769364c4a3c354258f",
+  "public_source_code_sha256": "39b92bfddc0b8a20ab4f0abd2487b2b95cdd79a55ac6ab769364c4a3c354258f",
+  "pilot": {
+    "source_n": 30,
+    "source_modality_units": 90,
+    "triplets": 180,
+    "main_inputs": 390,
+    "score_jobs": 821,
+    "main_failures": 0
+  },
+  "tests": {
+    "protocol_tests_passed": 12,
+    "followup_checks": {
+      "blind_selection_unchanged": true,
+      "display_duplicate_groups_match_media_bytes": true,
+      "original_means_and_intervals_reproduced": true,
+      "actual_blank_forms_rejected_as_incomplete": true,
+      "schema_valid_invalid_missing_duplicate_cases": true,
+      "real_merge_command_rejects_blank_forms": true,
+      "cache_recomputation_matches_original_source_weighting": true,
+      "quality_rule_requires_no_model_correctness": true,
+      "http_public_routes_and_private_404": true,
+      "review_ui_javascript_syntax": true,
+      "original_artifacts_unchanged": true
+    }
+  },
+  "human_review_imported": false,
+  "excluded": [
+    "raw data and media",
+    "weights",
+    "private manifests and item IDs",
+    "per-item labels and predictions",
+    "review mappings and ratings",
+    "credentials and SSH endpoints",
+    "resume caches and offline media packages"
+  ]
+}
