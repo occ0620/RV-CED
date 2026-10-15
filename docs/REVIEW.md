@@ -5,12 +5,19 @@
 
 审核者2直接[下载完整ZIP](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip)，完整解压后打开“打开盲审.html”即可评分。
 
+## 中文选项显示版v2（评分编码不变）
+
+已有v1媒体时，先导出旧CSV，再[下载小补丁](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-ui-v2/reviewer_02_options_patch_v2.zip)；首次使用直接[下载完整v2](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-ui-v2/reviewer_02_offline_v2.zip)。
+选项含中文等级说明，旧评分可以导入，冲突不覆盖；同一项目、媒体和原关系/质量标准保持不变。
+核对中发现的强度相邻档说明、信心解释和空白/unknown/na区别，已在[统一字段说明](../rvced_pilot/followup_analysis/reviewer/guide_labeled_v2.md)单独记录。
+原v1和其字段指南仍保留，旧分数不自动重编码。
+
 ## 组织者操作
 
 恢复私有运行及followup_analysis/reviewer/items.json、private/media_map.json、固定协议后：
 
 ```bash
-python rvced_pilot/followup_analysis/serve_review.py --port 8765
+python rvced_pilot/followup_analysis/serve_review_labeled.py --port 8765
 ```
 
 127.0.0.1仅在运行服务的电脑上可用，不能把该链接发给异地同学。

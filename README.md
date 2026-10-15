@@ -4,17 +4,16 @@
 
 **状态：真实 GPU pilot 已完成；标签规则构造，关系审核待完成。** 本阶段没有训练或 LoRA。
 
-## 队友填写：直接下载完整盲审包
+## 队友填写：中文选项显示版v2
 
-**[下载审核者2完整离线包（约1.43GB）](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip)** · [SHA256校验文件](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip.sha256) · [Releases下载页](https://github.com/occ0620/RV-CED/releases/tag/pilot-blind-review-v1)
+- **已下载过v1：[下载约50KB中文选项补丁](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-ui-v2/reviewer_02_options_patch_v2.zip)**。先从旧页面导出CSV；补丁解压到v1目录的上一级，再打开新增的“打开盲审_中文选项.html”。原网页和媒体保留。
+- **首次使用：[下载完整离线包v2（约1.43GB）](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-ui-v2/reviewer_02_offline_v2.zip)**。完整解压，打开“打开盲审.html”，无需Python。
+- [下载页及SHA256校验文件](https://github.com/occ0620/RV-CED/releases/tag/pilot-blind-review-ui-v2)；[完整字段说明](rvced_pilot/followup_analysis/reviewer/guide_labeled_v2.md)。
 
-1. 下载并完整解压ZIP，用Chrome或Edge打开“打开盲审.html”。无需Python。
-2. 按字段说明先完成独立通道，再做组合输入；编号固定为reviewer_02。
-3. 每完成一部分导出CSV备份，最后将reviewer_02.completed.csv私下交给组织者。
-
-该包含同一360个盲审项目所需的全部657个媒体文件，不含标签、模型预测、私有映射或已填写评分。
-克隆代码或点击GitHub的Download ZIP不会包含这个媒体包，需使用上面的独立下载入口。
-审核者请直接使用盲审包，独立评分，不参考下方分析结果或另一位审核者评分。
+选项显示为“编码＝中文含义”，例如“1＝低信心”；导出仍保存原数字编码。强度原名称保持不变，统一说明0→4递增；空白、unknown、na分别表示未完成、无法判断、不适用。
+已有CSV可在新页面“恢复旧评分CSV”导入，遇到与当前非空评分冲突时整体拒绝导入，不覆盖已有评分。原v1仍保留。
+同一360个项目与657个媒体不变，原关系和高质量标准不变；两人独立填写，先通道后组合，最后私下提交reviewer_02.completed.csv。
+代码克隆不携带媒体包。审核者请直接使用上述盲审包，不参考下方分析结果或另一位审核者评分。
 
 ## 实际运行
 
