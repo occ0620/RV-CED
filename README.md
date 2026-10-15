@@ -6,7 +6,7 @@
 
 ## 队友填写：直接下载完整盲审包
 
-**[下载审核者2完整离线包（约1.43GB）](https://github.com/occ0620/RV-CED/releases/download/untagged-d54ea16e997a267d393b/reviewer_02_offline_v1.zip)** · [SHA256校验文件](https://github.com/occ0620/RV-CED/releases/download/untagged-d54ea16e997a267d393b/reviewer_02_offline_v1.zip.sha256) · [Releases下载页](https://github.com/occ0620/RV-CED/releases/tag/pilot-blind-review-v1)
+**[下载审核者2完整离线包（约1.43GB）](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip)** · [SHA256校验文件](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip.sha256) · [Releases下载页](https://github.com/occ0620/RV-CED/releases/tag/pilot-blind-review-v1)
 
 1. 下载并完整解压ZIP，用Chrome或Edge打开“打开盲审.html”。无需Python。
 2. 按字段说明先完成独立通道，再做组合输入；编号固定为reviewer_02。

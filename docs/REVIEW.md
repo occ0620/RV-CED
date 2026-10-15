@@ -3,7 +3,7 @@
 **关系审核待完成。** 审核者独立填写，不读取模型输出、标签或私有映射。
 代码区包含工具与指南，完整盲审媒体包在[Releases](https://github.com/occ0620/RV-CED/releases/tag/pilot-blind-review-v1)提供；私有映射、模型结果和已填写评分表不公开。原冻结材料仍在本地保留。
 
-审核者2直接[下载完整ZIP](https://github.com/occ0620/RV-CED/releases/download/untagged-d54ea16e997a267d393b/reviewer_02_offline_v1.zip)，完整解压后打开“打开盲审.html”即可评分。
+审核者2直接[下载完整ZIP](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip)，完整解压后打开“打开盲审.html”即可评分。
 
 ## 组织者操作
 
@@ -21,7 +21,7 @@ python rvced_pilot/followup_analysis/build_offline_review.py
 python rvced_pilot/followup_analysis/verify_offline_review.py
 ```
 
-完整sharing/reviewer_02_offline_v1.zip已上传为[Release资产](https://github.com/occ0620/RV-CED/releases/download/untagged-d54ea16e997a267d393b/reviewer_02_offline_v1.zip)，并提供[SHA256校验](https://github.com/occ0620/RV-CED/releases/download/untagged-d54ea16e997a267d393b/reviewer_02_offline_v1.zip.sha256)。该大文件单独下载，不放入Git提交。解压整个包，双击“打开盲审.html”，无需Python。
+完整sharing/reviewer_02_offline_v1.zip已上传为[Release资产](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip)，并提供[SHA256校验](https://github.com/occ0620/RV-CED/releases/download/pilot-blind-review-v1/reviewer_02_offline_v1.zip.sha256)。该大文件单独下载，不放入Git提交。解压整个包，双击“打开盲审.html”，无需Python。
 页面固定reviewer_02，内嵌同一360个盲审项目，用相对路径访问657个媒体文件；不包含模型结果、数据集标签或私有映射。
 完成后导出reviewer_02.completed.csv交组织者。浏览器临时保存不替代CSV备份。
 
