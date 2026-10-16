@@ -25,6 +25,7 @@ PILOT = HERE.parents[1]
 INVENTORY = PILOT / "runs/main-a800-v3/manifests/inventory.csv"
 PREDICTIONS = PILOT / "runs/main-a800-v3/results/predictions.jsonl"
 FFMPEG = next((PILOT / "tools").glob("*/bin/ffmpeg.exe"))
+FFPROBE = next((PILOT / "tools").glob("*/bin/ffprobe.exe"))
 SEED = 20261016
 TAU = 0.2
 N_FRAMES = 8
@@ -94,6 +95,27 @@ def extract_frames(source: Path, total: int, target_dir: Path) -> tuple[list[str
     return [p.name for p in expected], indices
 
 
+def browser_video(source: Path, target: Path) -> str:
+    """Keep ordinary H.264/AAC files byte-identical; transcode unsupported 10-bit copies."""
+    probe = subprocess.run([
+        str(FFPROBE), "-v", "error", "-select_streams", "v:0",
+        "-show_entries", "stream=codec_name,pix_fmt", "-of", "json", str(source),
+    ], check=True, capture_output=True, text=True, timeout=30)
+    stream = json.loads(probe.stdout)["streams"][0]
+    if stream.get("codec_name") == "h264" and stream.get("pix_fmt") == "yuv420p":
+        shutil.copyfile(source, target)
+        return "byte-identical-source-copy"
+    temp = target.with_name(target.stem + ".tmp.mp4")
+    subprocess.run([
+        str(FFMPEG), "-nostdin", "-y", "-v", "error", "-xerror", "-i", str(source),
+        "-map", "0:v:0", "-map", "0:a:0", "-c:v", "libx264", "-pix_fmt", "yuv420p",
+        "-preset", "medium", "-crf", "18", "-c:a", "aac", "-b:a", "192k",
+        "-movflags", "+faststart", str(temp),
+    ], check=True, timeout=180)
+    temp.replace(target)
+    return "browser-review-transcode-h264-yuv420p-aac; inference-uses-original"
+
+
 def write_csv(path: Path, fields: list[str], rows: list[dict[str, object]]) -> None:
     with path.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
@@ -109,7 +131,7 @@ def html(items: list[dict[str, object]]) -> str:
 body{font-family:system-ui,"Microsoft YaHei",sans-serif;margin:0;background:#f4f6fa;color:#172033}.top{position:sticky;top:0;z-index:5;background:white;border-bottom:1px solid #ccd5e3;padding:12px 4vw}.wrap{max-width:1100px;margin:auto}.card{background:white;border:1px solid #d9e0ea;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 2px 8px #17203312}.notice{background:#fff7da;border-left:5px solid #e5a400;padding:10px 14px}.target{font-size:1.35rem;padding:18px;background:#f2f6ff;border-radius:8px}.frames{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.frames img{width:100%;height:170px;object-fit:contain;background:#111}.fields{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px;margin-top:14px}.field{border:1px solid #dfe5ef;border-radius:8px;padding:10px}.field label{font-weight:650;display:block;margin-bottom:7px}select,textarea{width:100%;box-sizing:border-box;padding:8px;border:1px solid #aeb9c9;border-radius:6px;background:white}video{width:100%;max-height:520px;background:#111}.buttons{display:flex;gap:8px;flex-wrap:wrap}.buttons button,.buttons a{border:1px solid #63718a;background:white;border-radius:7px;padding:8px 12px;text-decoration:none;color:#172033;cursor:pointer}.buttons .primary{background:#235bd8;color:white}.muted{color:#5f6c7e}.stage{border-top:2px solid #dbe3ef;margin-top:18px;padding-top:12px}.hidden{display:none}@media(max-width:750px){.frames{grid-template-columns:repeat(2,1fr)}.fields{grid-template-columns:1fr}.frames img{height:130px}}
 </style></head><body><div class="top"><div class="wrap"><b>RV-CED v4 自然冲突候选盲审</b>
 <div class="buttons"><label>审核者 <select id="reviewer"><option value="">请选择</option><option value="reviewer_01">reviewer_01＝审核者1</option><option value="reviewer_02">reviewer_02＝审核者2</option></select></label><button id="prev">上一项</button><button id="next">下一项</button><button class="primary" id="export">导出当前评分 CSV</button><label>恢复评分 <input id="import" type="file" accept=".csv"></label><a href="guide.md">审核指南</a></div><div id="status" class="muted"></div></div></div>
-<main class="wrap"><p class="notice">先独立判断目标通道，再查看原始同步片段。页面不含数据标签、模型预测或预期方向。无法判断请选择 unknown，不要猜。浏览器会自动保存到本机，但仍请经常导出 CSV 备份。</p><div id="root"></div></main>
+<main class="wrap"><p class="notice">先独立判断目标通道，再查看原始同步片段。页面不含数据标签、模型预测或预期方向。无法判断请选择 unknown，不要猜。浏览器会自动保存到本机，但仍请经常导出 CSV 备份。若视频显示 0:00，请不要使用 IDE 内置预览，运行“启动盲审.ps1”后在 Chrome/Edge 中填写。</p><div id="root"></div></main>
 <script>
 const items=__ITEMS__;
 const schema={
@@ -145,6 +167,8 @@ $('#reviewer').onchange=load;$('#prev').onclick=()=>{pos=(pos+items.length-1)%it
 GUIDE = """# RV-CED v4 自然冲突候选盲审指南
 
 本轮只审核原始同步片段，用于在模型推理前冻结 v4 样本。页面不含模型结果、官方目标极性或预期方向。两位审核者应独立填写，不能查看对方答案。
+
+请用 Chrome 或 Edge。若视频显示 `0:00`，说明 `file://` 或 IDE 内置预览阻止了本地媒体；运行同目录的 `启动盲审.ps1`，通过它打开的 `http://127.0.0.1:8774/` 页面继续。若旧页面已有评分，先导出 CSV，再在新页面选择同一审核者并导入。
 
 每人审核 35 个候选，每个候选有两个连续步骤，不是 70 个独立样本：
 
@@ -196,7 +220,7 @@ D:\\installpackage\\python.exe rvced_pilot/followup_analysis/v4_natural_conflict
 QUICKSTART = """RV-CED v4 盲审包使用方法
 
 1. 先完整解压 ZIP，不要直接在压缩包预览窗口里打开网页。
-2. 用 Chrome 或 Edge 双击“打开盲审.html”。
+2. 首选右键运行“启动盲审.ps1”，它会在 Chrome/Edge 默认浏览器打开本地页面；也可直接双击“打开盲审.html”。若视频显示0:00，必须使用启动脚本。
 3. 在页面顶部选择自己的编号：一人固定 reviewer_01，另一人固定 reviewer_02。
 4. 每人填写 35 个候选。每个候选先单独看目标通道，再播放同一段原始同步视频检查质量。
 5. 页面会自动保存在当前浏览器；仍请经常点击“导出当前评分 CSV”备份。
@@ -233,9 +257,10 @@ def main() -> None:
         frames, indices = extract_frames(Path(row["origin_media_path"]), int(row["video_frames"]), item_media)
         video_name = opaque + ".mp4"
         video_target = MEDIA / video_name
-        shutil.copyfile(row["origin_media_path"], video_target)
-        if sha(video_target) != row["media_sha256"]:
-            raise RuntimeError(f"Media hash mismatch: {row['clip_id']}")
+        source_media = Path(row["origin_media_path"])
+        if sha(source_media) != row["media_sha256"]:
+            raise RuntimeError(f"Source media hash mismatch: {row['clip_id']}")
+        review_media_mode = browser_video(source_media, video_target)
         pub = {
             "item_id": item_id,
             "target_modality": modality,
@@ -250,7 +275,7 @@ def main() -> None:
             "y_t": row["y_t"], "y_a": row["y_a"], "y_v": row["y_v"], "y_multi": row["y_multi"],
             "text": row["text"], "duration": row["duration"], "video_frames": row["video_frames"],
             "sampled_frame_indices": json.dumps(indices), "origin_media_path": row["origin_media_path"],
-            "media_sha256": row["media_sha256"], "public_video": pub["video"],
+            "media_sha256": row["media_sha256"], "public_video": pub["video"], "review_media_mode": review_media_mode,
         })
         media_rows.append({"relative_path": pub["video"], "sha256": sha(video_target), "bytes": video_target.stat().st_size})
         for rel in pub["frames"]:
@@ -264,6 +289,8 @@ def main() -> None:
     (REVIEW / "打开盲审.html").write_text(html(public), encoding="utf-8")
     (REVIEW / "guide.md").write_text(GUIDE, encoding="utf-8")
     (REVIEW / "先读我.txt").write_text(QUICKSTART, encoding="utf-8")
+    (REVIEW / "serve_review.py").write_text('''from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler\nfrom pathlib import Path\nimport functools, threading, urllib.parse, webbrowser\nroot=Path(__file__).resolve().parent\nurl="http://127.0.0.1:8774/"+urllib.parse.quote("打开盲审.html")\nhandler=functools.partial(SimpleHTTPRequestHandler,directory=str(root))\nserver=ThreadingHTTPServer(("127.0.0.1",8774),handler)\nprint("盲审地址：",url,flush=True)\nthreading.Timer(0.5,lambda:webbrowser.open(url)).start()\ntry:server.serve_forever()\nexcept KeyboardInterrupt:pass\nfinally:server.server_close()\n''', encoding="utf-8")
+    (REVIEW / "启动盲审.ps1").write_text('''$here=Split-Path -Parent $MyInvocation.MyCommand.Path\n$preferred='D:\\installpackage\\python.exe'\nif(Test-Path -LiteralPath $preferred){& $preferred (Join-Path $here 'serve_review.py')}else{python (Join-Path $here 'serve_review.py')}\n''', encoding="utf-8-sig")
     blank = [{"reviewer_id": rid, "item_id": x["item_id"], "target_modality": x["target_modality"]} for x in public for rid in []]
     for rid in ("reviewer_01", "reviewer_02"):
         rows = [{"reviewer_id": rid, "item_id": x["item_id"], "target_modality": x["target_modality"]} for x in public]
@@ -276,6 +303,8 @@ def main() -> None:
         "candidate_rule": "eligible test; tau=0.2; target polarity nonzero and opposite two agreeing nonneutral other modalities",
         "seed": SEED, "tau": TAU, "frame_rule": "rounded-linspace-first-to-last-decoded-frame",
         "review_frame_encoding": "JPEG q:v=2 at source resolution; same indices as inference; inference re-decodes original media",
+        "review_video_compatibility": "source H.264 yuv420p copied byte-identically; unsupported 10-bit review copies transcoded to H.264 yuv420p/AAC; inference always uses original media",
+        "browser_review_transcodes": sum(x["review_media_mode"].startswith("browser-review-transcode") for x in private),
         "candidate_counts": counts, "total_candidates": len(public), "items_sha256": sha(REVIEW / "items.json"),
         "private_mapping_sha256": sha(PRIVATE / "candidate_mapping.csv"), "inventory_sha256": sha(INVENTORY),
         "predictions_path_existence_recorded_only": PREDICTIONS.exists(),

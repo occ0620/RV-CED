@@ -24,8 +24,8 @@
     "sha256": "8622ff359d124db3fe9f924b12046cce4e9ca53d0ce3c36ff6f4ea7230c029df"
   },
   "README.md": {
-    "bytes": 5885,
-    "sha256": "5d8f8f5e8962eac81c518993ebc2fed0aa89da1bb872662a1fb4999cca67cdd3"
+    "bytes": 5963,
+    "sha256": "e1a62e80b5cb49b790451905bea8f48582f13555e2c1ee6aa5dcb22935843a41"
   },
   "rvced_pilot/configs/pilot.yaml": {
     "bytes": 3164,
@@ -172,28 +172,36 @@
     "sha256": "538b22effcf1078de24c69764d839690485d27a4d394d6966e68d8a2e7d59285"
   },
   "rvced_pilot/followup_analysis/v4_natural_conflict/prepare_review.py": {
-    "bytes": 24692,
-    "sha256": "8c31622f622a81a3a4f2411e2d078591bf5fe61ce163ef3c64fd2e94f0ee9066"
+    "bytes": 27797,
+    "sha256": "0faedda7cc11599eab711330d7114ebe7cb8f1e31ce9dcec890a87e033b6a277"
   },
   "rvced_pilot/followup_analysis/v4_natural_conflict/protocol.fixed.json": {
     "bytes": 2304,
-    "sha256": "36edc0d6ac2793e61135d8baea86a7c1eb3e0886d9b29829d8adbed8bf794b79"
+    "sha256": "482b6ee0df48c2531cc40ddd1645a26b5f8ab8a529a53a76a0965cef6e97c451"
   },
   "rvced_pilot/followup_analysis/v4_natural_conflict/README.md": {
     "bytes": 1736,
     "sha256": "644d63925c27c9badf02f72cd982930ba2cbd8e3fdda1185a29b788db6cec19a"
   },
   "rvced_pilot/followup_analysis/v4_natural_conflict/reviewer/guide.md": {
-    "bytes": 2323,
-    "sha256": "fd2bd7f6476bb6893c36a2f8b09a53eeb9119619560f7a5d42fa14cbc45dfe73"
+    "bytes": 2628,
+    "sha256": "e520149a02ba06678e0db93754e9e527bf4dc7d11f58febbb284c997e34e9734"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/reviewer/serve_review.py": {
+    "bytes": 578,
+    "sha256": "68b6c523e34616a7670ff13f3bf829be8b804e6d02bcb343bf12d8f6fe898ca0"
   },
   "rvced_pilot/followup_analysis/v4_natural_conflict/reviewer/先读我.txt": {
-    "bytes": 769,
-    "sha256": "7219f105b24f8caebaf06f9a9a67fabe24feacee52ab0638c9432e8a489d748d"
+    "bytes": 911,
+    "sha256": "cf3bef3d153deb9ae0d228dae1845ae1238ec2a5d7a569fd1ebd57c7749ede91"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/reviewer/启动盲审.ps1": {
+    "bytes": 238,
+    "sha256": "6c6b731c7f7a68b8c354e5322099d09803108b3a54bca2e5946518998376b663"
   },
   "rvced_pilot/followup_analysis/v4_natural_conflict/verification.json": {
     "bytes": 250,
-    "sha256": "64cd089ecb411012478fea5e21bd9eca1969e437a449d956a2b9854aca271ce3"
+    "sha256": "682525005d13ff945d2cbb1de72d2360304c1aaba8720945f58b8d1767c52f95"
   },
   "rvced_pilot/followup_analysis/v4_natural_conflict/verify_review.py": {
     "bytes": 2404,
