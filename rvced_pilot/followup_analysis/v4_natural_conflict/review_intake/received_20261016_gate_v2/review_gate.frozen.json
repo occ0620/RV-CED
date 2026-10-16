@@ -1,0 +1,30 @@
+{
+  "created_utc": "2026-10-16T01:30:13.213306+00:00",
+  "status": "PAUSE_INFERENCE_INSUFFICIENT_REVIEWED_SOURCES",
+  "protocol": "v4-natural-conflict-paired-target-removal",
+  "decision_basis": "The frozen pass rule is conjunctive. Independent step-1 ratings bound the final passing count above by the number for which both reviewers match the official target polarity. Step 2 can only exclude candidates, so incomplete step-2 ratings cannot reverse this stop decision.",
+  "candidate_counts": {
+    "T": 18,
+    "V": 17
+  },
+  "maximum_possible_passing_counts": {
+    "T": 7,
+    "V": 2
+  },
+  "minimum_to_proceed_per_modality": 10,
+  "selected_item_ids": {
+    "T": [],
+    "V": []
+  },
+  "reviewer_2_step2_declared_independent": false,
+  "quality_review_complete": false,
+  "relation_review_complete": true,
+  "review_files_sha256": {
+    "reviewer_01": "6b3c4e9e9c8d188f5a694b28cc0ba0e0fdeca1e9ef8df55cbbab64dde9d3d8c0",
+    "reviewer_02": "e85b003ffe6e212fa750ac4ebe37f3f2dc85236040d1171410dc77e5b9ed7455"
+  },
+  "protocol_sha256": "44286925f084ef5f05b6b45bfe7e011b19f2bd5d4d1eceb782cbc10fc10658a0",
+  "model_predictions_used_for_decision": false,
+  "model_inference_executed": false,
+  "thresholds_changed_after_review": false
+}

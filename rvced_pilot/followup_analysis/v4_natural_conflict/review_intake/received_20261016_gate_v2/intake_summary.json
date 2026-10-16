@@ -1,0 +1,82 @@
+{
+  "created_utc": "2026-10-16T01:30:13.213306+00:00",
+  "status": "PAUSE_INFERENCE_INSUFFICIENT_REVIEWED_SOURCES",
+  "merge_executed": false,
+  "model_inference_executed": false,
+  "legacy_v3_excluded_from_v4": true,
+  "reviewer_2_step2_declared_independent": false,
+  "v4_rows": {
+    "reviewer_01": 35,
+    "reviewer_02": 35
+  },
+  "step1_complete": true,
+  "step1_agreement": {
+    "target_polarity": {
+      "n": 35,
+      "raw_agreement": 0.5428571428571428,
+      "cohen_kappa": 0.29471032745591935
+    },
+    "target_confidence": {
+      "n": 35,
+      "raw_agreement": 0.3142857142857143,
+      "cohen_kappa": -0.08667529107373866
+    },
+    "target_clarity": {
+      "n": 35,
+      "raw_agreement": 0.02857142857142857,
+      "cohen_kappa": -0.05871886120996442
+    }
+  },
+  "relation_match_official": {
+    "T": {
+      "n": 18,
+      "both_match_official": 7,
+      "rate": 0.3888888888888889
+    },
+    "V": {
+      "n": 17,
+      "both_match_official": 2,
+      "rate": 0.11764705882352941
+    }
+  },
+  "maximum_possible_passing_counts": {
+    "T": 7,
+    "V": 2
+  },
+  "minimum_to_proceed_per_modality": 10,
+  "step2_can_only_exclude_candidates": true,
+  "independent_step2_completion_needed_for_current_gate": false,
+  "step2_complete_items": {
+    "reviewer_01": 34,
+    "reviewer_02": 1
+  },
+  "missing_cells": {
+    "reviewer_01": 1,
+    "reviewer_02": 204,
+    "total": 205
+  },
+  "structural_errors": {
+    "reviewer_01": [],
+    "reviewer_02": []
+  },
+  "input_files": {
+    "v4-reviewer-1": {
+      "source_name": "reviewer_01.v4.completed.csv",
+      "archived_as": "originals/reviewer_01.v4.received.csv",
+      "bytes": 1897,
+      "sha256": "6b3c4e9e9c8d188f5a694b28cc0ba0e0fdeca1e9ef8df55cbbab64dde9d3d8c0"
+    },
+    "v4-reviewer-2": {
+      "source_name": "reviewer_02.v4.completed.csv",
+      "archived_as": "originals/reviewer_02.v4.received.csv",
+      "bytes": 1691,
+      "sha256": "e85b003ffe6e212fa750ac4ebe37f3f2dc85236040d1171410dc77e5b9ed7455"
+    },
+    "legacy-v3-excluded": {
+      "source_name": "reviewer_01.completed.csv",
+      "archived_as": "originals/reviewer_01.v3.received.csv",
+      "bytes": 37053,
+      "sha256": "742403a5814e3ae2e14e6ae4b5d10e1bf86eb4a98dda3e35dd6eb4af2a2830cd"
+    }
+  }
+}

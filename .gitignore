@@ -50,6 +50,8 @@
 **/*.wav
 **/*.npy
 **/*.npz
+**/review_intake/**/originals/
+**/review_intake/**/missing_fields.csv
 .env
 .env.*
 *.pem
