@@ -190,7 +190,7 @@ D:\\installpackage\\python.exe rvced_pilot/followup_analysis/v4_natural_conflict
 
 脚本会校验完整性、保存独立评分与分歧、按预定规则生成最多 12 个 T 和 12 个 V 的冻结清单。若任一模态少于 10 个合格候选，状态写为 `PAUSE_INFERENCE_INSUFFICIENT_REVIEWED_SOURCES`，不得自行放宽标准。
 
-离线包在 `sharing/rvced_v4_review_offline.zip`；GitHub 协作者可从 [v4-natural-conflict-review-v1 Release](https://github.com/occ0620/RV-CED/releases/tag/v4-natural-conflict-review-v1) 下载完整包。本地若使用 Git 分卷传递，则使用同目录的小于 80 MiB 分卷和 `重新合并压缩包.ps1`。媒体仅限项目审核者使用。
+离线包在 `sharing/rvced_v4_review_offline.zip`。包内含原始视频，不随公开 Git 仓库发布；请通过私下文件传输交给审核者。本地若需分卷传递，可使用同目录的小于 80 MiB 分卷和 `重新合并压缩包.ps1`。媒体仅限项目审核者使用。
 """
 
 QUICKSTART = """RV-CED v4 盲审包使用方法

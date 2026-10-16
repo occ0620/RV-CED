@@ -20,7 +20,7 @@ rvced_pilot/followup_analysis/v4_natural_conflict/reviewer/打开盲审.html
 rvced_pilot/followup_analysis/v4_natural_conflict/sharing/rvced_v4_review_offline.zip
 ```
 
-若通过 GitHub 传递，使用两个小于 80 MiB 的分卷 `.zip.001`、`.zip.002` 和 `重新合并压缩包.ps1`。同伴下载三者后运行脚本，再解压生成的 `rvced_v4_review_offline.rebuilt.zip`。
+包内含原始视频，不随公开 Git 仓库发布；请私下发送完整 ZIP，或发送两个分卷 `.zip.001`、`.zip.002` 和 `重新合并压缩包.ps1`。同伴收到三者后运行脚本，再解压生成的 `rvced_v4_review_offline.rebuilt.zip`。
 
 两位审核者导出各自 CSV 后运行：
 
