@@ -116,6 +116,14 @@ def browser_video(source: Path, target: Path) -> str:
     return "browser-review-transcode-h264-yuv420p-aac; inference-uses-original"
 
 
+def review_wav(source: Path, target: Path) -> None:
+    """Decode a universal speech track using the model's 16 kHz mono convention."""
+    subprocess.run([
+        str(FFMPEG), "-nostdin", "-y", "-v", "error", "-xerror", "-i", str(source),
+        "-map", "0:a:0", "-vn", "-ac", "1", "-ar", "16000", "-c:a", "pcm_s16le", str(target),
+    ], check=True, timeout=180)
+
+
 def write_csv(path: Path, fields: list[str], rows: list[dict[str, object]]) -> None:
     with path.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
@@ -128,7 +136,7 @@ def html(items: list[dict[str, object]]) -> str:
     return r'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>RV-CED v4 自然冲突盲审</title>
 <style>
-body{font-family:system-ui,"Microsoft YaHei",sans-serif;margin:0;background:#f4f6fa;color:#172033}.top{position:sticky;top:0;z-index:5;background:white;border-bottom:1px solid #ccd5e3;padding:12px 4vw}.wrap{max-width:1100px;margin:auto}.card{background:white;border:1px solid #d9e0ea;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 2px 8px #17203312}.notice{background:#fff7da;border-left:5px solid #e5a400;padding:10px 14px}.target{font-size:1.35rem;padding:18px;background:#f2f6ff;border-radius:8px}.frames{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.frames img{width:100%;height:170px;object-fit:contain;background:#111}.fields{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px;margin-top:14px}.field{border:1px solid #dfe5ef;border-radius:8px;padding:10px}.field label{font-weight:650;display:block;margin-bottom:7px}select,textarea{width:100%;box-sizing:border-box;padding:8px;border:1px solid #aeb9c9;border-radius:6px;background:white}video{width:100%;max-height:520px;background:#111}.buttons{display:flex;gap:8px;flex-wrap:wrap}.buttons button,.buttons a{border:1px solid #63718a;background:white;border-radius:7px;padding:8px 12px;text-decoration:none;color:#172033;cursor:pointer}.buttons .primary{background:#235bd8;color:white}.muted{color:#5f6c7e}.stage{border-top:2px solid #dbe3ef;margin-top:18px;padding-top:12px}.hidden{display:none}@media(max-width:750px){.frames{grid-template-columns:repeat(2,1fr)}.fields{grid-template-columns:1fr}.frames img{height:130px}}
+body{font-family:system-ui,"Microsoft YaHei",sans-serif;margin:0;background:#f4f6fa;color:#172033}.top{position:sticky;top:0;z-index:5;background:white;border-bottom:1px solid #ccd5e3;padding:12px 4vw}.wrap{max-width:1100px;margin:auto}.card{background:white;border:1px solid #d9e0ea;border-radius:12px;padding:18px;margin:18px 0;box-shadow:0 2px 8px #17203312}.notice{background:#fff7da;border-left:5px solid #e5a400;padding:10px 14px}.target{font-size:1.35rem;padding:18px;background:#f2f6ff;border-radius:8px}.frames{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.frames img{width:100%;height:170px;object-fit:contain;background:#111}.fields{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:12px;margin-top:14px}.field{border:1px solid #dfe5ef;border-radius:8px;padding:10px}.field label{font-weight:650;display:block;margin-bottom:7px}select,textarea{width:100%;box-sizing:border-box;padding:8px;border:1px solid #aeb9c9;border-radius:6px;background:white}video{width:100%;max-height:520px;background:#111}audio{width:100%;margin:8px 0}.buttons{display:flex;gap:8px;flex-wrap:wrap}.buttons button,.buttons a{border:1px solid #63718a;background:white;border-radius:7px;padding:8px 12px;text-decoration:none;color:#172033;cursor:pointer}.buttons .primary{background:#235bd8;color:white}.muted{color:#5f6c7e}.stage{border-top:2px solid #dbe3ef;margin-top:18px;padding-top:12px}.hidden{display:none}@media(max-width:750px){.frames{grid-template-columns:repeat(2,1fr)}.fields{grid-template-columns:1fr}.frames img{height:130px}}
 </style></head><body><div class="top"><div class="wrap"><b>RV-CED v4 自然冲突候选盲审</b>
 <div class="buttons"><label>审核者 <select id="reviewer"><option value="">请选择</option><option value="reviewer_01">reviewer_01＝审核者1</option><option value="reviewer_02">reviewer_02＝审核者2</option></select></label><button id="prev">上一项</button><button id="next">下一项</button><button class="primary" id="export">导出当前评分 CSV</button><label>恢复评分 <input id="import" type="file" accept=".csv"></label><a href="guide.md">审核指南</a></div><div id="status" class="muted"></div></div></div>
 <main class="wrap"><p class="notice">先独立判断目标通道，再查看原始同步片段。页面不含数据标签、模型预测或预期方向。无法判断请选择 unknown，不要猜。浏览器会自动保存到本机，但仍请经常导出 CSV 备份。若视频显示 0:00，请不要使用 IDE 内置预览，运行“启动盲审.ps1”后在 Chrome/Edge 中填写。</p><div id="root"></div></main>
@@ -154,7 +162,7 @@ function frameGrid(item){let box=el('div',{className:'frames'});item.frames.forE
 function fieldBox(item,field){let box=el('div',{className:'field'}),s=select(field);s.value=(answers[item.item_id]||{})[field]||'';s.onchange=()=>{answers[item.item_id]??={};answers[item.item_id][field]=s.value;save()};box.append(el('label',{},labels[field]),s);return box}
 function render(){let root=$('#root');root.innerHTML='';if(!rid()){let prompt=el('section',{className:'card'});prompt.append(el('h2',{},'请先在页面顶部选择审核者编号'));prompt.append(el('p',{},'选择后页面才会载入该审核者的独立本地进度。'));root.append(prompt);progress();return}let item=items[pos],card=el('section',{className:'card'});card.append(el('h2',{},`候选 ${pos+1}/${items.length} · ${item.item_id} · 目标通道 ${item.target_modality}`));
 let s1=el('div');s1.append(el('h3',{},'步骤1：只看目标通道'));if(item.target_modality==='T')s1.append(el('div',{className:'target'},item.text));else s1.append(frameGrid(item));let f1=el('div',{className:'fields'});['target_polarity','target_confidence','target_clarity'].forEach(f=>f1.append(fieldBox(item,f)));s1.append(f1);card.append(s1);
-let s2=el('div',{className:'stage'});s2.append(el('h3',{},'步骤2：查看原始同步片段与模型8帧'));s2.append(el('p',{className:'muted'},'先播放带声音的完整原片，再核对页面转写和下面固定8帧。字幕判断只以固定8帧为准。'));let v=el('video',{src:item.video,controls:true,preload:'metadata'});s2.append(v,el('p',{className:'target'},item.text),frameGrid(item));let f2=el('div',{className:'fields'});['speech_words_understood','speech_text_match','subtitles_present','subtitles_readable','sync_issue','processing_error'].forEach(f=>f2.append(fieldBox(item,f)));let nb=el('div',{className:'field'}),ta=el('textarea',{rows:3,placeholder:'可选：记录歧义、画面文字位置或问题'});ta.value=(answers[item.item_id]||{}).notes||'';ta.oninput=()=>{answers[item.item_id]??={};answers[item.item_id].notes=ta.value;save()};nb.append(el('label',{},'备注'),ta);f2.append(nb);s2.append(f2);card.append(s2);root.append(card);progress();scrollTo(0,0)}
+let s2=el('div',{className:'stage'});s2.append(el('h3',{},'步骤2：查看原始同步片段与模型8帧'));s2.append(el('p',{className:'muted'},'点击视频播放；声音由下方WAV轨同步输出。也可单独播放WAV检查语音。再核对页面转写和固定8帧；字幕判断只以固定8帧为准。'));let v=el('video',{src:item.video,controls:true,preload:'metadata',muted:true}),a=el('audio',{src:item.audio,controls:true,preload:'metadata'});let sync=()=>{if(Math.abs((a.currentTime||0)-(v.currentTime||0))>.18)a.currentTime=v.currentTime||0};v.onplay=()=>{sync();a.playbackRate=v.playbackRate;a.play().catch(()=>{})};v.onpause=()=>a.pause();v.onseeking=sync;v.ontimeupdate=sync;v.onratechange=()=>a.playbackRate=v.playbackRate;v.onended=()=>{a.pause();a.currentTime=0};s2.append(v,el('p',{className:'muted'},'同步WAV声音轨（视频控件显示静音属于正常现象）'),a,el('p',{className:'target'},item.text),frameGrid(item));let f2=el('div',{className:'fields'});['speech_words_understood','speech_text_match','subtitles_present','subtitles_readable','sync_issue','processing_error'].forEach(f=>f2.append(fieldBox(item,f)));let nb=el('div',{className:'field'}),ta=el('textarea',{rows:3,placeholder:'可选：记录歧义、画面文字位置或问题'});ta.value=(answers[item.item_id]||{}).notes||'';ta.oninput=()=>{answers[item.item_id]??={};answers[item.item_id].notes=ta.value;save()};nb.append(el('label',{},'备注'),ta);f2.append(nb);s2.append(f2);card.append(s2);root.append(card);progress();scrollTo(0,0)}
 function progress(){let done=items.filter(x=>{let a=answers[x.item_id]||{};return Object.keys(schema).every(k=>a[k])}).length;$('#status').textContent=`自动保存：${rid()||'尚未选择审核者'}；完整 ${done}/${items.length}`}
 function csvCell(v){v=String(v??'');return /[",\r\n]/.test(v)?'"'+v.replaceAll('"','""')+'"':v}
 function exportCsv(){if(!rid())return alert('请先选择审核者');let fields=['reviewer_id','item_id','target_modality',...Object.keys(schema),'notes'];let rows=[fields.join(',')];for(let x of items){let a=answers[x.item_id]||{};rows.push(fields.map(k=>csvCell(k==='reviewer_id'?rid():k==='item_id'?x.item_id:k==='target_modality'?x.target_modality:a[k])).join(','))}let b=new Blob(['\ufeff'+rows.join('\r\n')],{type:'text/csv;charset=utf-8'}),u=URL.createObjectURL(b),a=el('a',{href:u,download:`${rid()}.v4.completed.csv`});a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
@@ -169,6 +177,8 @@ GUIDE = """# RV-CED v4 自然冲突候选盲审指南
 本轮只审核原始同步片段，用于在模型推理前冻结 v4 样本。页面不含模型结果、官方目标极性或预期方向。两位审核者应独立填写，不能查看对方答案。
 
 请用 Chrome 或 Edge。若视频显示 `0:00`，说明 `file://` 或 IDE 内置预览阻止了本地媒体；运行同目录的 `启动盲审.ps1`，通过它打开的 `http://127.0.0.1:8774/` 页面继续。若旧页面已有评分，先导出 CSV，再在新页面选择同一审核者并导入。
+
+视频控件固定静音，声音由页面下方的 16 kHz PCM WAV 轨同步播放。点击视频播放时 WAV 会跟随；也可以单独点击 WAV 控件试听。正式推理仍从原始 MP4 解码音频。
 
 每人审核 35 个候选，每个候选有两个连续步骤，不是 70 个独立样本：
 
@@ -222,7 +232,7 @@ QUICKSTART = """RV-CED v4 盲审包使用方法
 1. 先完整解压 ZIP，不要直接在压缩包预览窗口里打开网页。
 2. 首选右键运行“启动盲审.ps1”，它会在 Chrome/Edge 默认浏览器打开本地页面；也可直接双击“打开盲审.html”。若视频显示0:00，必须使用启动脚本。
 3. 在页面顶部选择自己的编号：一人固定 reviewer_01，另一人固定 reviewer_02。
-4. 每人填写 35 个候选。每个候选先单独看目标通道，再播放同一段原始同步视频检查质量。
+4. 每人填写 35 个候选。每个候选先单独看目标通道，再播放同一段原始同步视频检查质量。视频本身固定静音，声音由下方WAV控件同步输出；也可单独播放WAV。
 5. 页面会自动保存在当前浏览器；仍请经常点击“导出当前评分 CSV”备份。
 6. 全部完成后，把 reviewer_01.v4.completed.csv 或 reviewer_02.v4.completed.csv 发给项目组织者。
 
@@ -256,16 +266,20 @@ def main() -> None:
         item_media = MEDIA / opaque
         frames, indices = extract_frames(Path(row["origin_media_path"]), int(row["video_frames"]), item_media)
         video_name = opaque + ".mp4"
+        audio_name = opaque + ".wav"
         video_target = MEDIA / video_name
         source_media = Path(row["origin_media_path"])
         if sha(source_media) != row["media_sha256"]:
             raise RuntimeError(f"Source media hash mismatch: {row['clip_id']}")
         review_media_mode = browser_video(source_media, video_target)
+        audio_target = MEDIA / audio_name
+        review_wav(source_media, audio_target)
         pub = {
             "item_id": item_id,
             "target_modality": modality,
             "text": row["text"],
             "video": f"media/{video_name}",
+            "audio": f"media/{audio_name}",
             "frames": [f"media/{opaque}/{name}" for name in frames],
         }
         public.append(pub)
@@ -278,6 +292,7 @@ def main() -> None:
             "media_sha256": row["media_sha256"], "public_video": pub["video"], "review_media_mode": review_media_mode,
         })
         media_rows.append({"relative_path": pub["video"], "sha256": sha(video_target), "bytes": video_target.stat().st_size})
+        media_rows.append({"relative_path": pub["audio"], "sha256": sha(audio_target), "bytes": audio_target.stat().st_size})
         for rel in pub["frames"]:
             p = REVIEW / rel
             media_rows.append({"relative_path": rel, "sha256": sha(p), "bytes": p.stat().st_size})
@@ -304,6 +319,7 @@ def main() -> None:
         "seed": SEED, "tau": TAU, "frame_rule": "rounded-linspace-first-to-last-decoded-frame",
         "review_frame_encoding": "JPEG q:v=2 at source resolution; same indices as inference; inference re-decodes original media",
         "review_video_compatibility": "source H.264 yuv420p copied byte-identically; unsupported 10-bit review copies transcoded to H.264 yuv420p/AAC; inference always uses original media",
+        "review_audio_compatibility": "PCM s16le mono 16 kHz WAV synchronized by the page; inference always decodes original media",
         "browser_review_transcodes": sum(x["review_media_mode"].startswith("browser-review-transcode") for x in private),
         "candidate_counts": counts, "total_candidates": len(public), "items_sha256": sha(REVIEW / "items.json"),
         "private_mapping_sha256": sha(PRIVATE / "candidate_mapping.csv"), "inventory_sha256": sha(INVENTORY),

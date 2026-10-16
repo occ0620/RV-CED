@@ -1,5 +1,5 @@
 {
-  "frozen_utc": "2026-10-16T00:28:32.647215+00:00",
+  "frozen_utc": "2026-10-16T00:33:12.718637+00:00",
   "protocol": "v4-natural-conflict-paired-target-removal",
   "candidate_rule": "eligible test; tau=0.2; target polarity nonzero and opposite two agreeing nonneutral other modalities",
   "tau": 0.2,
@@ -52,11 +52,11 @@
   },
   "model_output_used_for_candidate_or_quality_selection": false,
   "artifact_hashes": {
-    "items.json": "2cf1b66d9a28750a279523c505d748d1fee75356a01fbd0b3436455217f28e47",
+    "items.json": "d6980c1259b9a5c4442ffb94ff2bc012157a9d8ccf4761b1101de4d037656a3c",
     "candidate_mapping.csv": "7c8366471e28d564438309c79d8c097c67e069a1eed4b117249665e213074490",
-    "guide.md": "e520149a02ba06678e0db93754e9e527bf4dc7d11f58febbb284c997e34e9734",
-    "offline_archive": "32450648e62c4a8d7514924a2a685b3c17efe4cef37bdfdc88a131471d2e3604",
-    "prepare_review.py": "0faedda7cc11599eab711330d7114ebe7cb8f1e31ce9dcec890a87e033b6a277",
+    "guide.md": "b589118ee32e23ec9fe2a02ee21c98446c77ff87d5d4f81a6167d22da06c3e07",
+    "offline_archive": "ada3c6f096fd72bf177d10176b7aa134c0bdd0be1a972b2db5aedd8cf5daad30",
+    "prepare_review.py": "1d86fab660be4fc69d5885a23399dc1f8eee071e27495359150a44d38a438f14",
     "merge_reviews.py": "538b22effcf1078de24c69764d839690485d27a4d394d6966e68d8a2e7d59285"
   }
 }
