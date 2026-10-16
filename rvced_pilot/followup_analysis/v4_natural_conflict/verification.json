@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "candidates": 35,
+  "T": 18,
+  "V": 17,
+  "media_files": 315,
+  "archive_sha256": "384d4af458ed5d7043a9dce41b9189b1595a1d04f941946314e7cb557a966c38",
+  "predictions_read": false,
+  "v3_frozen_hashes_unchanged": true
+}

@@ -24,8 +24,8 @@
     "sha256": "8622ff359d124db3fe9f924b12046cce4e9ca53d0ce3c36ff6f4ea7230c029df"
   },
   "README.md": {
-    "bytes": 4600,
-    "sha256": "10154c64bdd28ced6bb0434d5cb8e36e8937a9263557595a66de8dc813860f97"
+    "bytes": 5942,
+    "sha256": "1d25333e9091b7e98a7ed82729e04d83076c037abdeea27f2d0a14230a360861"
   },
   "rvced_pilot/configs/pilot.yaml": {
     "bytes": 3164,
@@ -38,6 +38,10 @@
   "rvced_pilot/evidence/related_work.md": {
     "bytes": 2128,
     "sha256": "39ae6d327af4e645901976424241d56e825b1ca9b746aa44b6ce382a76aa4bec"
+  },
+  "rvced_pilot/followup_analysis/analyze_v4_alignment_feasibility.py": {
+    "bytes": 6738,
+    "sha256": "42b8bab1bd895fcbe8e69fbd99422c93d3a33ce27bd79d5b9ed5cdef2f474d12"
   },
   "rvced_pilot/followup_analysis/build_labeled_review.py": {
     "bytes": 5011,
@@ -83,9 +87,13 @@
     "bytes": 7160,
     "sha256": "317102f81bcd530bb66c646c538de3b3edf3365bcffbef5a4fe6046cab8b6225"
   },
+  "rvced_pilot/followup_analysis/protocol_issue_20261016/report.md": {
+    "bytes": 976,
+    "sha256": "eff68c509b8b585731e2b786bfff2d10fbee075bb11d35b8a06d862eb2e184ea"
+  },
   "rvced_pilot/followup_analysis/README.md": {
-    "bytes": 1016,
-    "sha256": "f43d421c94bd007f4c8246feaf38e03338de2a5631446d2d98c6ec2b432f25eb"
+    "bytes": 2544,
+    "sha256": "f47282dade03fe1e142d2720746e308a12ed579b605d97b8d9ccc5fa79dbc0ba"
   },
   "rvced_pilot/followup_analysis/review_ui_labels.py": {
     "bytes": 8225,
@@ -150,6 +158,46 @@
   "rvced_pilot/followup_analysis/tables/zero_tolerance.csv": {
     "bytes": 569,
     "sha256": "1967b6c1d06378274bdd706fe086e627f2bfde3e9364ad5d1c8fd031b2ddb637"
+  },
+  "rvced_pilot/followup_analysis/v4_alignment_feasibility/report.md": {
+    "bytes": 3258,
+    "sha256": "9ec40890064398f07857caeae37f1f04f5aa5d06fa6c7bc438a1e70b627f37a9"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/freeze_protocol.py": {
+    "bytes": 2578,
+    "sha256": "edc0d03994ebe1fd2a4a2817dbda00d73441404d332435de9e2d6a54def5a3dd"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/merge_reviews.py": {
+    "bytes": 8809,
+    "sha256": "538b22effcf1078de24c69764d839690485d27a4d394d6966e68d8a2e7d59285"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/prepare_review.py": {
+    "bytes": 24758,
+    "sha256": "2fb7e2030c9cefd243787cbc0250a7981a805a6d5c2123b7b6ec59b83256ce27"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/protocol.fixed.json": {
+    "bytes": 2304,
+    "sha256": "c1350c89d084054f1d37180088769ac842a7f70f84e59364426b4a11bd47e4e9"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/README.md": {
+    "bytes": 1802,
+    "sha256": "96bc6e60a498ae6f1f3f55d46dac59b9e1e8c4b1cd4dab40dcf388356f2253a2"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/reviewer/guide.md": {
+    "bytes": 2323,
+    "sha256": "fd2bd7f6476bb6893c36a2f8b09a53eeb9119619560f7a5d42fa14cbc45dfe73"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/reviewer/先读我.txt": {
+    "bytes": 769,
+    "sha256": "7219f105b24f8caebaf06f9a9a67fabe24feacee52ab0638c9432e8a489d748d"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/verification.json": {
+    "bytes": 250,
+    "sha256": "64cd089ecb411012478fea5e21bd9eca1969e437a449d956a2b9854aca271ce3"
+  },
+  "rvced_pilot/followup_analysis/v4_natural_conflict/verify_review.py": {
+    "bytes": 2404,
+    "sha256": "a0d02b96e295fc8151bd48a2691e37c37b70b3cf150eb4fb4489caf15d83bad5"
   },
   "rvced_pilot/followup_analysis/verify_delivery.py": {
     "bytes": 9406,

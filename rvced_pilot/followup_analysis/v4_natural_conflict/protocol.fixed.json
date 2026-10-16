@@ -1,0 +1,62 @@
+{
+  "frozen_utc": "2026-10-16T00:21:22.619462+00:00",
+  "protocol": "v4-natural-conflict-paired-target-removal",
+  "candidate_rule": "eligible test; tau=0.2; target polarity nonzero and opposite two agreeing nonneutral other modalities",
+  "tau": 0.2,
+  "candidate_counts": {
+    "T": 18,
+    "V": 17
+  },
+  "reviewers_required": 2,
+  "human_pass_rule": {
+    "both_target_polarity_equals_official_direction": true,
+    "both_target_confidence_min": 2,
+    "both_target_clarity_min": 2,
+    "both_speech_words_understood": 1,
+    "both_speech_text_match": 1,
+    "both_subtitles_present": 0,
+    "both_subtitles_readable": "na",
+    "both_sync_issue": 0,
+    "both_processing_error": 0,
+    "unknown_policy": "preserve in raw review; candidate fails quality screen"
+  },
+  "selection": {
+    "seed": 20261016,
+    "cap_per_modality": 12,
+    "minimum_to_proceed_per_modality": 10,
+    "if_insufficient": "pause inference; do not relax or replace based on model output"
+  },
+  "conditions": {
+    "T": [
+      "full_TAV",
+      "AV_only_without_T"
+    ],
+    "V": [
+      "full_TAV",
+      "TA_only_without_V"
+    ],
+    "A": "not run; zero strict candidates"
+  },
+  "main_metric": "E_m = sign(y_m) * (s(full_TAV) - s(without_target_m))",
+  "estimand": "target-channel incremental association under naturally conflicting synchronized clips",
+  "claims_excluded": [
+    "cross-clip donor causal effect",
+    "emotion counterfactual",
+    "modality-dependence ranking"
+  ],
+  "inference_budget": {
+    "maximum_sources": 24,
+    "maximum_unique_main_inputs": 48,
+    "training": false,
+    "lora": false
+  },
+  "model_output_used_for_candidate_or_quality_selection": false,
+  "artifact_hashes": {
+    "items.json": "2cf1b66d9a28750a279523c505d748d1fee75356a01fbd0b3436455217f28e47",
+    "candidate_mapping.csv": "2d966020915ff877d88c862254e273e78d44a14d0f2cc364f9ab7035c4872b8b",
+    "guide.md": "fd2bd7f6476bb6893c36a2f8b09a53eeb9119619560f7a5d42fa14cbc45dfe73",
+    "offline_archive": "384d4af458ed5d7043a9dce41b9189b1595a1d04f941946314e7cb557a966c38",
+    "prepare_review.py": "2fb7e2030c9cefd243787cbc0250a7981a805a6d5c2123b7b6ec59b83256ce27",
+    "merge_reviews.py": "538b22effcf1078de24c69764d839690485d27a4d394d6966e68d8a2e7d59285"
+  }
+}

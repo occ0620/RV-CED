@@ -2,7 +2,17 @@
 
 逐输入通道匹配替换的情感分析预实验：固定其他通道，将目标通道替换为同极性或反极性供体，比较模型输出响应。
 
-**状态：真实 GPU pilot 已完成；标签规则构造，关系审核待完成。** 本阶段没有训练或 LoRA。
+**状态：v3 真实 GPU pilot 已完成；跨片段组合存在内容与时间不同步，组合审核已停止。v4 自然冲突实验处于推理前盲审。** 本阶段没有训练或 LoRA。
+
+## 当前审核：v4 原始同步片段
+
+v3 冻结结果仍保留，但跨片段替换会造成字幕、语词、口型和时间不一致，因此不能支持纯模态因果结论。v4 不再拼接供体，只用每个原始片段自身同步的 T/A/V；先对严格自然冲突候选做两人独立盲审，再冻结最多 12 个 T 和 12 个 V 来源。完整说明见 [v4 审核与冻结](rvced_pilot/followup_analysis/v4_natural_conflict/README.md) 和 [协议问题记录](rvced_pilot/followup_analysis/protocol_issue_20261016/report.md)。
+
+- **审核者离线包：将在 [v4-natural-conflict-review-v1 Release](https://github.com/occ0620/RV-CED/releases/tag/v4-natural-conflict-review-v1) 提供。** 下载完整 ZIP，解压后先读 `先读我.txt`，再打开 `打开盲审.html`。
+- 每人只填 35 个候选；每个候选依次做目标通道判断和原始同步质量检查。两人选择不同审核者编号，独立填写并导出各自 CSV。
+- 页面不含模型输出、官方目标极性或私有映射。模型推理要等审核合并状态为 `READY_FOR_V4_INFERENCE` 后再运行；样本不足时不放宽阈值。
+
+下面的 v2 下载仅用于保存旧 v3 审核材料；不要继续填写其中的“组合输入”部分。
 
 ## 队友填写：中文选项显示版v2
 
